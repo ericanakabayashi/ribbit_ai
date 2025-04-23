@@ -1,0 +1,29 @@
+[project]
+name = "ribbit_ai"
+version = "0.1.0"
+description = "Ribbit AI 2.0"
+authors = [
+  { name="Erica Naka", email="ericanaka@berkeley.edu" }
+]
+requires-python = ">=3.11"
+
+dependencies = [
+    # BirdNET dependencies
+    "librosa",
+    "resampy",
+    "tensorflow==2.15.1",
+    "scikit-learn==1.6.1",
+    "tqdm",
+
+    # Ribbit former monolith dependencies
+    "fastapi",
+    "uvicorn[standard]",
+    "boto3",
+    "numpy",
+    "pydantic",
+    "soundfile",
+    "requests",
+    "bcrypt",
+    "Pillow",
+    "python-multipart",
+]
