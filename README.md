@@ -1,6 +1,6 @@
 # Ribbit - Shazam for frogs!
 
-The Ribbit web application was developed as a Capstone project for MIDS by Haissam Akhras,  Lia Cappellari, Farouk Ghandour, Erica Nakabayashi and Juliana Gómez Consuegra. 
+The Ribbit web application was developed as a Capstone project for UC Berkeley MIDS by Haissam Akhras, Lia Cappellari, Farouk Ghandour, Erica Nakabayashi and Juliana Gómez Consuegra. 
 
 ## Objective
 
