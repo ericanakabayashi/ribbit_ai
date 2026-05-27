@@ -8,7 +8,6 @@ authors = [
 requires-python = ">=3.11"
 
 dependencies = [
-    # Streamlit Cloud only needs this — keep it lean
     "streamlit",
 ]
 
@@ -21,7 +20,7 @@ backend = [
     "scipy",
 
     # BirdNET — install the PyPI package OR keep the local clone on sys.path
-    "birdnet-analyzer",
+    "birdnet-analyzer==2.2.0",
     "tensorflow==2.15.1",
 
     # vector store
@@ -29,13 +28,13 @@ backend = [
 
     # ML / data
     "scikit-learn==1.6.1",
-    "numpy",
+    "numpy==1.26.4",
     "pandas",
     "tqdm",
 
     # API
-    "fastapi",
-    "uvicorn[standard]",
+    "fastapi==0.136.3",
+    "uvicorn[standard]==0.47.0",
     "pydantic",
     "python-multipart",
     "requests",
@@ -60,3 +59,8 @@ dev = [
 
 [tool.uv]
 package = false  # application, not a library — skip self-install
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]
