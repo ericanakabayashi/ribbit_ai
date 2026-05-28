@@ -1,0 +1,12 @@
+streamlit
+boto3
+audiorecorder
+streamlit-geolocation
+folium
+streamlit-folium
+streamlit-carousel
+streamlit-image-select
+geopy
+bcrypt
+Pillow
+requests
