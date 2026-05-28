@@ -646,7 +646,7 @@ def show_home_page():
             else:
                 st.error(_("You have not agreed to the privacy policy. Data will not be saved."))
 
-        elif len(audio) == 0:
+        elif audio is not None and len(audio) == 0:
             st.session_state.pop("recording_uploaded", None)
 
         if st.session_state.get("current_step_record") == "confirmation":
