@@ -24,4 +24,7 @@ WORKDIR /app
 
 EXPOSE 8080
 
-CMD ["uvicorn", "serve:app", "--host", "0.0.0.0", "--port", "8080"]
+RUN printf '#!/bin/bash\nuvicorn serve:app --host 0.0.0.0 --port 8080\n' \
+    > /usr/local/bin/serve && chmod +x /usr/local/bin/serve
+
+CMD ["serve"]
