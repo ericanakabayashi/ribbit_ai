@@ -11,7 +11,12 @@ import boto3
 import folium
 import streamlit as st
 import streamlit.components.v1 as components
-from AudioRecorder import audiorecorder
+try:
+    from AudioRecorder import audiorecorder as audiorecorder
+    _RECORDER_OK = True
+except Exception:
+    _RECORDER_OK = False
+    audiorecorder = None
 from geopy.geocoders import Nominatim
 from PIL import Image
 from streamlit_carousel import carousel
@@ -602,7 +607,11 @@ def show_home_page():
         else:
             st.write(_("No location information available until permission is granted."))
 
-        audio = audiorecorder(_("Click to record"), _("Click to stop recording"))
+        if not _RECORDER_OK:
+            st.warning(_("Live recording is not available in this environment. Please use the Upload option instead."))
+            audio = None
+        else:
+            audio = audiorecorder(_("Click to record"), _("Click to stop recording"))
 
         if audio and len(audio) > 0 and "recording_uploaded" not in st.session_state:
             audio_data = export_audio_data(audio)
