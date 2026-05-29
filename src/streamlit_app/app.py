@@ -14,8 +14,10 @@ import streamlit.components.v1 as components
 try:
     from audiorecorder import audiorecorder
     _RECORDER_OK = True
-except Exception:
+    _RECORDER_ERR = None
+except Exception as _e:
     _RECORDER_OK = False
+    _RECORDER_ERR = str(_e)
     audiorecorder = None
 from geopy.geocoders import Nominatim
 from PIL import Image
@@ -608,7 +610,7 @@ def show_home_page():
             st.write(_("No location information available until permission is granted."))
 
         if not _RECORDER_OK:
-            st.warning(_("Live recording is not available in this environment. Please use the Upload option instead."))
+            st.warning(f"Live recording unavailable. Error: {_RECORDER_ERR}")
             audio = None
         else:
             audio = audiorecorder(_("Click to record"), _("Click to stop recording"))
