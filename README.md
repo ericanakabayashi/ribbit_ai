@@ -18,28 +18,6 @@ Following Ghani et al. (2023), we apply a linear probe on top of audio embedding
 
 ## Get involved
 
-We welcome contributions of all kinds — new training data, species coverage, language translations, model improvements, or UI work. If you'd like to collaborate, reach out at **nakabayashi.erica@gmail.com**. We'd love to hear from you.
+We welcome contributions of all kinds — new training data, species coverage, language translations, model improvements, or UI work. If you'd like to collaborate, reach out at **julianagc@ischool.berkeley.edu**. We'd love to hear from you.
 
-## Running locally
-
-Raise a virtual environment with [uv](https://github.com/astral-sh/uv), activate, and sync dependencies:
-
-```bash
-uv venv --python 3.11
-source .venv/bin/activate
-uv sync
-```
-
-Then run the Streamlit app:
-
-```bash
-streamlit run src/streamlit_app/app.py
-```
-
-## Folder structure
-
-```
-src/
-  streamlit_app/   # Web app (Streamlit)
-  inference_service/  # Model serving
-```
+## Happy Ribbiting! 🐸
