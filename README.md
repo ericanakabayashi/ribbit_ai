@@ -1,6 +1,6 @@
 # Ribbit — Shazam for Frogs 🐸
 
-Ribbit is an open-source citizen science tool that turns your phone's browser into an automated frog and toad identifier. Record a frog call, and Ribbit instantly classifies the species — helping fill critical biodiversity data gaps, especially across the Global South.
+Ribbit is a citizen science tool that turns your browser into an automated frog and toad identifier. Record a frog call, and Ribbit classifies the species — helping fill critical biodiversity data gaps, especially across the Global South.
 
 The project originated as a Capstone for UC Berkeley MIDS, built by Haissam Akhras, Lia Cappellari, Farouk Ghandour, Erica Nakabayashi, and Juliana Gómez Consuegra. It has since grown into an ongoing open project.
 
