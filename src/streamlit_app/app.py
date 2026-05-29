@@ -670,15 +670,20 @@ def show_home_page():
         uploaded_file = st.file_uploader(_("Choose an audio file"), type=["wav", "mp3", "m4a"])
 
         st.write(_("Select the location of your recording on the map."))
-        geolocator = Nominatim(user_agent="ribbitapp")
+        geolocator = Nominatim(user_agent="RibbitApp/1.0 (nakabayashi.erica@gmail.com)")
         location_query = st.text_input(_("Enter a city, country, or location to center the map"))
         center_coords, zoom_level = [37.0902, -95.7129], 4
         if location_query:
-            loc = geolocator.geocode(location_query)
-            if loc:
-                center_coords = [loc.latitude, loc.longitude]
-                zoom_level = 12
-                st.write(f"{_('Location found')}: {loc.address}")
+            try:
+                loc = geolocator.geocode(location_query, timeout=5)
+                if loc:
+                    center_coords = [loc.latitude, loc.longitude]
+                    zoom_level = 12
+                    st.write(f"{_('Location found')}: {loc.address}")
+                else:
+                    st.warning(_("Location not found. Click on the map to set your location."))
+            except Exception:
+                st.warning(_("Location search unavailable. Click on the map to set your location."))
 
         m = folium.Map(location=center_coords, zoom_start=zoom_level)
         map_data = st_folium(m, width=700, height=400)
