@@ -1,5 +1,4 @@
 streamlit
-pyaudio
 boto3
 streamlit-audiorecorder
 streamlit-geolocation
