@@ -1,7 +1,7 @@
 [project]
 name = "ribbit_ai"
 version = "0.1.0"
-description = "Ribbit AI 2.0"
+description = "Ribbit AI"
 authors = [
   { name="Erica Naka", email="ericanaka@berkeley.edu" }
 ]
@@ -19,7 +19,7 @@ backend = [
     "soundfile",
     "scipy",
 
-    # BirdNET — install the PyPI package OR keep the local clone on sys.path
+    # BirdNET
     "birdnet-analyzer==2.2.0",
     "tensorflow==2.15.1",
 
@@ -58,7 +58,7 @@ dev = [
 ]
 
 [tool.uv]
-package = false  # application, not a library — skip self-install
+package = false
 
 [dependency-groups]
 dev = [

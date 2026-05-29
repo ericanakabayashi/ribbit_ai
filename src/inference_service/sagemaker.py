@@ -195,7 +195,7 @@ def input_fn(body, ct):
 
 def predict_fn(data, mdl):
     if isinstance(data, dict) and data.get(_ERR):
-        return data  # pass error envelope through to output_fn
+        return data
     try:
         return run_prediction(data, mdl)
     except ClientError as exc:

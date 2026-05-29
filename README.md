@@ -1,23 +1,45 @@
-# Ribbit - Shazam for frogs!
+# Ribbit — Shazam for Frogs 🐸
 
-The Ribbit web application was developed as a Capstone project for UC Berkeley MIDS by Haissam Akhras, Lia Cappellari, Farouk Ghandour, Erica Nakabayashi and Juliana Gómez Consuegra. 
+Ribbit is an open-source citizen science tool that turns your phone's browser into an automated frog and toad identifier. Record a frog call, and Ribbit instantly classifies the species — helping fill critical biodiversity data gaps, especially across the Global South.
 
-## Objective
+The project originated as a Capstone for UC Berkeley MIDS, built by Haissam Akhras, Lia Cappellari, Farouk Ghandour, Erica Nakabayashi, and Juliana Gómez Consuegra. It has since grown into an ongoing open project.
 
-In a world where over 40% of amphibian species face extinction, partly due to the climate crisis, our app Ribbit is bridging critical data gaps in the Global South by empowering nature enthusiasts. Ribbit transforms your phone web browser into a tool for automated frog and toad identification. By simply recording a frog's call, our web app instantly analyzes the call and classifies the species, allowing users to contribute valuable data to global conservation efforts. 
+## Why it matters
 
+Over 40% of amphibian species face extinction, yet acoustic monitoring data remains sparse in many regions. Ribbit empowers nature enthusiasts and researchers to contribute observations directly from the field, building a richer, community-driven dataset for conservation science.
 
-## Methods
-Following Ghani et al, 2023, we applied a linear probe on top of embeddings extracted using the BirdNet model developed by the Cornell Lab of Ornithology, to classify frogs and toads by using their calls. Our raw data included data from three sources: [iNat sounds](https://github.com/gvanhorn38/iNatSounds), [Anuraset](https://github.com/soundclim/anuraset) and [Anfibios del Ecuador](https://bioweb.bio/faunaweb/amphibiaweb/). 
+## How it works
 
-## Folder structure [WIP]
+Following Ghani et al. (2023), we apply a linear probe on top of audio embeddings extracted with the [BirdNET model](https://github.com/kahst/BirdNET-Analyzer) from the Cornell Lab of Ornithology. Training data was drawn from three open sources:
 
+- [iNat Sounds](https://github.com/gvanhorn38/iNatSounds)
+- [Anuraset](https://github.com/soundclim/anuraset)
+- [Anfibios del Ecuador](https://bioweb.bio/faunaweb/amphibiaweb/)
 
-## Running with uv (astral)
+## Get involved
 
-Raise venv using astral uv, activate, and sync dependencies
-```
-uv venv --python 3.11 
+We welcome contributions of all kinds — new training data, species coverage, language translations, model improvements, or UI work. If you'd like to collaborate, reach out at **nakabayashi.erica@gmail.com**. We'd love to hear from you.
+
+## Running locally
+
+Raise a virtual environment with [uv](https://github.com/astral-sh/uv), activate, and sync dependencies:
+
+```bash
+uv venv --python 3.11
 source .venv/bin/activate
 uv sync
+```
+
+Then run the Streamlit app:
+
+```bash
+streamlit run src/streamlit_app/app.py
+```
+
+## Folder structure
+
+```
+src/
+  streamlit_app/   # Web app (Streamlit)
+  inference_service/  # Model serving
 ```
