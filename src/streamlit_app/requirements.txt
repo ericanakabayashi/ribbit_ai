@@ -1,7 +1,7 @@
 streamlit
 pyaudio
 boto3
-audiorecorder
+streamlit-audiorecorder
 streamlit-geolocation
 folium
 streamlit-folium
