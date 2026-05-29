@@ -12,7 +12,7 @@ import folium
 import streamlit as st
 import streamlit.components.v1 as components
 try:
-    from AudioRecorder import audiorecorder as audiorecorder
+    from audiorecorder import audiorecorder
     _RECORDER_OK = True
 except Exception:
     _RECORDER_OK = False
