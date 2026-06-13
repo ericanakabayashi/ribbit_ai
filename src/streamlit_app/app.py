@@ -84,19 +84,22 @@ def call_sagemaker(audio_bytes: bytes) -> list:
     result = json.loads(response["Body"].read())
     return [(p["species"], float(p["confidence"])) for p in result["predictions"]]
 
-# ── Translation (graceful fallback to English) ─────────────────────────────────
+# ── Translation ────────────────────────────────────────────────────────────────
 
 LANGUAGES = {"English": "en", "Español": "es", "Português": "pt", "العربية": "ar"}
 
+@st.cache_resource
+def _load_translations():
+    import json, os
+    path = os.path.join(os.path.dirname(__file__), "translations.json")
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
 def load_translation(language_code):
-    try:
-        import gettext
-        t = gettext.translation("ribbit", localedir="locale", languages=[language_code])
-        t.install()
-        return t.gettext
-    except FileNotFoundError:
-        import gettext
-        return gettext.gettext
+    if language_code == "en":
+        return lambda s: s
+    t = _load_translations().get(language_code, {})
+    return lambda s: t.get(s, s)
 
 # ── Session state init ─────────────────────────────────────────────────────────
 
