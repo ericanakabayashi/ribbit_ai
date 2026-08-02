@@ -414,13 +414,15 @@ def fetch_wikipedia_full(frog_name, lang="en"):
         pass
     return None
 
-def get_wikipedia_details(frog_names):
+def get_wikipedia_details(frog_names, preferred_lang="en"):
+    all_langs = ["en", "es", "pt", "ar"]
+    lang_order = [preferred_lang] + [l for l in all_langs if l != preferred_lang]
     results = []
     for name in frog_names:
         intro = None
         full = None
-        for lang in ["en", "es", "pt", "ar"]:
-            intro = fetch_wikipedia_content(name, lang)  # exintro=1
+        for lang in lang_order:
+            intro = fetch_wikipedia_content(name, lang)
             if intro:
                 full = fetch_wikipedia_full(name, lang)
                 break
@@ -460,6 +462,7 @@ def display_species_carousel(species_predictions, carousel_key):
             if st.button(name, key=f"btn_{name}_{carousel_key}"):
                 st.session_state["selected_species"] = data
                 st.session_state["navigate_to"] = "species_details"
+                st.session_state["from_frogs"] = True
                 st.rerun()
 
 def _show_prediction_results(top_5, step_key, confirm_key):
@@ -872,7 +875,7 @@ def display_species_details(species):
     if common_name_en and common_name_en not in search_names:
         search_names.append(common_name_en)
 
-    wiki = get_wikipedia_details(search_names)
+    wiki = get_wikipedia_details(search_names, preferred_lang=lang)
     bio = next((x for x in wiki if any(x.get(k) for k in ("summary", "description", "habitat"))), None)
     if bio:
         st.write(_("Wikipedia Summary:"))
@@ -888,6 +891,12 @@ def display_species_details(species):
         if st.button(_("Back to Results"), key="back_to_results"):
             st.session_state["page"] = "home"
             st.session_state["from_model_output"] = False
+            st.rerun()
+    elif st.session_state.get("from_frogs", False):
+        if st.button(_("Back to My Frogs"), key="back_to_frogs"):
+            st.session_state["selected_species"] = None
+            st.session_state["from_frogs"] = False
+            st.session_state.page = "frogs"
             st.rerun()
     else:
         if st.button(_("Back to Explore"), key="back_to_explore"):
