@@ -88,7 +88,6 @@ def call_sagemaker(audio_bytes: bytes) -> list:
 
 LANGUAGES = {"English": "en", "Español": "es", "Português": "pt", "العربية": "ar"}
 
-@st.cache_resource
 def _load_translations():
     import json, os
     path = os.path.join(os.path.dirname(__file__), "translations.json")
