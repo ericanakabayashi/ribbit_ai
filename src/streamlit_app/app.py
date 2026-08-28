@@ -88,7 +88,6 @@ def call_sagemaker(audio_bytes: bytes) -> list:
 
 LANGUAGES = {"English": "en", "Español": "es", "Português": "pt", "العربية": "ar"}
 
-@st.cache_resource
 def _load_translations():
     import json, os
     path = os.path.join(os.path.dirname(__file__), "translations.json")
@@ -912,16 +911,14 @@ def display_species_details(species):
 def show_privacy_policy():
     _ = st.session_state["_"]
     st.title(_("Privacy Policy"))
-    st.markdown(_("""
-    ### Welcome to Ribbit!
-
-    Your privacy is important to us. This Privacy Policy outlines how we collect, use, and protect your information.
-
-    ### Information We Collect
-    1. Audio recordings of frog calls that you capture and upload through the app.
-    2. Location data where recordings are made, if you allow location services.
-    3. User data such as your name and email address.
-    """))
+    st.markdown(f"### {_('Welcome to Ribbit!')}")
+    st.write(_("Your privacy is important to us. This Privacy Policy outlines how we collect, use, and protect your information."))
+    st.markdown(f"### {_('Information We Collect')}")
+    st.markdown(
+        f"1. {_('Audio recordings of frog calls that you capture and upload through the app.')}\n"
+        f"2. {_('Location data where recordings are made, if you allow location services.')}\n"
+        f"3. {_('User data such as your name and email address.')}"
+    )
     agree = st.checkbox(_("I agree to the Privacy Policy"), value=False)
     if st.button(_("Save")):
         if agree:
@@ -947,12 +944,18 @@ def show_faq():
     _ = st.session_state["_"]
     st.title(_("Frequently Asked Questions (FAQ)"))
     faqs = [
-        (_("What is Ribbit?"), _("Ribbit is a web application for automatic identification of frogs and toads using AI.")),
-        (_("How does the app identify frogs?"), _("We use BirdNET (Cornell Lab of Ornithology) embeddings with an ensemble classifier trained on 71 frog species.")),
-        (_("Can I upload external recordings?"), _("Yes! Use the 'Upload and Locate Yourself' button on the home page.")),
-        (_("Do I need phone reception to record?"), _("No — record offline and upload later when you have a connection.")),
-        (_("How do I contact the Ribbit team?"), _("Reach us at julianagc@berkeley.edu")),
-        (_("Can I delete my account?"), _("Contact julianagc@berkeley.edu to request account deletion.")),
+        (_("What is Ribbit?"),
+         _("Ribbit is a web application for automatic identification of frogs and toads using AI.")),
+        (_("How does the app identify frogs?"),
+         _("We use BirdNET (Cornell Lab of Ornithology) embeddings with an ensemble classifier trained on 71 frog species.")),
+        (_("Can I upload external recordings?"),
+         _("Yes! Use the 'Upload and Locate Yourself' button on the home page.")),
+        (_("Do I need phone reception to record?"),
+         _("No — record offline and upload later when you have a connection.")),
+        (_("How do I contact the Ribbit team?"),
+         _("Reach us at julianagc@berkeley.edu")),
+        (_("Can I delete my account?"),
+         _("Contact julianagc@berkeley.edu to request account deletion.")),
     ]
     for question, answer in faqs:
         st.markdown(f"#### {question}")
@@ -963,12 +966,12 @@ def show_faq():
 def show_about():
     _ = st.session_state["_"]
     st.title(_("About"))
-    st.markdown(_("""
-    Our team developed Ribbit as our capstone project for the Masters in Information and Data Science (MIDS) program at UC Berkeley.
-    Lia Cappellari was in charge of modeling, Farouk Ghandour in charge of data engineering,
-    Erica Nakabayashi in charge of ML engineering, Haissam Akhras in charge of our MVP,
-    and Juliana Gómez Consuegra was the product manager and subject matter expert.
-    """))
+    st.markdown(_(
+        "Our team developed Ribbit as our capstone project for the Masters in Information and Data Science (MIDS) "
+        "program at UC Berkeley. Lia Cappellari was in charge of modeling, Farouk Ghandour in charge of data engineering, "
+        "Erica Nakabayashi in charge of ML engineering, Haissam Akhras in charge of our MVP, "
+        "and Juliana Gómez Consuegra was the product manager and subject matter expert."
+    ))
 
 # ── Router ─────────────────────────────────────────────────────────────────────
 
